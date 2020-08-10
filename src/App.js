@@ -1,26 +1,25 @@
 import React from 'react';
+import * as d3 from 'd3';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.myRef = React.createRef();
+  }
+  componentDidMount(){
+    console.log(this.myRef);
+    d3.select(this.myRef.current)
+     .append('p')
+     .text('Hello from D3');
+  }
+  render(){
+    return (
+      <div ref={this.myRef}>
+      </div>
+    );
+  }
 
+}
 export default App;
